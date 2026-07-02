@@ -1,0 +1,249 @@
+/* ── Element Plus 全局玻璃薄荷皮肤 ── */
+
+:root {
+  --ep-glass-bg: rgba(255, 255, 255, 0.65);
+  --ep-glass-border: rgba(255, 255, 255, 0.8);
+  --ep-glass-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+  --ep-primary: #10b981;
+  --ep-primary-light: rgba(16,185,129,0.1);
+  --ep-radius: 0.75rem;
+}
+
+/* ── 全局：干掉浏览器默认聚焦黑框 ── */
+input, textarea, select, button, [contenteditable] {
+  outline: none !important;
+}
+input:focus, textarea:focus, select:focus, button:focus {
+  outline: none !important;
+}
+
+/* ── Input ── */
+.el-input__wrapper {
+  background: var(--ep-glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--ep-glass-border) !important;
+  border-radius: var(--ep-radius) !important;
+  box-shadow: var(--ep-glass-shadow) !important;
+  transition: all 0.2s !important;
+}
+.el-input__wrapper:hover {
+  border-color: rgba(16,185,129,0.3) !important;
+}
+.el-input__wrapper.is-focus,
+.el-input__wrapper:focus-within {
+  box-shadow: 0 0 0 2px rgba(16,185,129,0.15), var(--ep-glass-shadow) !important;
+  border-color: rgba(16,185,129,0.4) !important;
+}
+.el-input__inner {
+  color: #374151 !important;
+  background: transparent !important;
+}
+.el-input__inner::placeholder {
+  color: #9ca3af !important;
+}
+
+/* ── Textarea ── */
+.el-textarea__inner {
+  background: var(--ep-glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--ep-glass-border) !important;
+  border-radius: var(--ep-radius) !important;
+  box-shadow: var(--ep-glass-shadow) !important;
+  color: #374151 !important;
+}
+.el-textarea__inner:focus {
+  box-shadow: 0 0 0 2px rgba(16,185,129,0.15), var(--ep-glass-shadow) !important;
+  border-color: rgba(16,185,129,0.4) !important;
+}
+
+/* ── Select ── */
+.el-select .el-input__wrapper {
+  background: var(--ep-glass-bg) !important;
+}
+
+/* ── Dropdown (popper) ── */
+.el-popper.is-light {
+  background: rgba(255,255,255,0.92) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border: 1px solid rgba(255,255,255,0.9) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08) !important;
+}
+.el-select-dropdown__item {
+  color: #374151 !important;
+}
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover {
+  background: rgba(16,185,129,0.08) !important;
+}
+.el-select-dropdown__item.selected {
+  color: #10b981 !important;
+  font-weight: 600 !important;
+}
+
+/* ── Table ── */
+.el-table {
+  --el-table-bg-color: transparent !important;
+  --el-table-tr-bg-color: transparent !important;
+  --el-table-header-bg-color: rgba(255,255,255,0.3) !important;
+  --el-table-row-hover-bg-color: rgba(16,185,129,0.04) !important;
+  --el-table-border-color: rgba(0,0,0,0.04) !important;
+  background: transparent !important;
+  border-radius: var(--ep-radius) !important;
+  overflow: hidden;
+}
+.el-table th.el-table__cell {
+  background: rgba(255,255,255,0.35) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #6b7280 !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
+}
+.el-table td.el-table__cell {
+  border-bottom: 1px solid rgba(0,0,0,0.03) !important;
+  color: #374151 !important;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background: rgba(255,255,255,0.15) !important;
+}
+
+/* ── Pagination ── */
+.el-pagination {
+  --el-pagination-bg-color: transparent !important;
+  --el-pagination-button-bg-color: rgba(255,255,255,0.5) !important;
+  --el-pagination-hover-color: #10b981 !important;
+}
+.el-pagination button {
+  border-radius: 0.5rem !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255,255,255,0.6) !important;
+}
+.el-pagination button.is-active {
+  background: linear-gradient(135deg, #10b981, #06b6d4) !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+
+/* ── Dialog ── */
+.el-dialog {
+  background: rgba(255,255,255,0.85) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border: 1px solid rgba(255,255,255,0.9) !important;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1) !important;
+}
+.el-dialog__header {
+  border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+  margin-right: 0 !important;
+  padding: 1.25rem 1.5rem !important;
+}
+.el-dialog__title {
+  color: #1f2937 !important;
+  font-weight: 700 !important;
+}
+.el-dialog__body {
+  padding: 1.5rem !important;
+  color: #374151 !important;
+}
+.el-dialog__footer {
+  border-top: 1px solid rgba(0,0,0,0.05) !important;
+  padding: 1rem 1.5rem !important;
+}
+
+/* ── MessageBox (ElMessageBox.confirm / alert / prompt) ── */
+.el-message-box {
+  background: rgba(255,255,255,0.85) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border: 1px solid rgba(255,255,255,0.9) !important;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1) !important;
+}
+.el-message-box__header {
+  border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+  padding: 1.25rem 1.5rem !important;
+}
+.el-message-box__title {
+  color: #1f2937 !important;
+  font-weight: 700 !important;
+}
+.el-message-box__content {
+  padding: 1.5rem !important;
+  color: #374151 !important;
+}
+.el-message-box__btns {
+  border-top: 1px solid rgba(0,0,0,0.05) !important;
+  padding: 1rem 1.5rem !important;
+}
+/* 确认按钮 — 强制 emerald 渐变 */
+.el-message-box .el-button--primary {
+  background: linear-gradient(135deg, #10b981, #06b6d4) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 2px 8px rgba(16,185,129,0.3) !important;
+}
+.el-message-box .el-button--primary:hover {
+  background: linear-gradient(135deg, #059669, #0891b2) !important;
+}
+.el-message-box .el-button--default {
+  background: rgba(255,255,255,0.65) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.8) !important;
+  border-radius: 0.75rem !important;
+  color: #374151 !important;
+}
+
+/* ── Button (primary) ── */
+.el-button--primary {
+  background: linear-gradient(135deg, #10b981, #06b6d4) !important;
+  border: none !important;
+  color: #ffffff !important;
+  border-radius: 0.75rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(16,185,129,0.2) !important;
+}
+.el-button--primary:hover {
+  background: linear-gradient(135deg, #059669, #0891b2) !important;
+}
+.el-button--default {
+  background: var(--ep-glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--ep-glass-border) !important;
+  border-radius: 0.75rem !important;
+  color: #374151 !important;
+  box-shadow: var(--ep-glass-shadow) !important;
+}
+.el-button--default:hover {
+  border-color: rgba(16,185,129,0.3) !important;
+  color: #10b981 !important;
+  background: rgba(255,255,255,0.8) !important;
+}
+
+/* ── Tag ── */
+.el-tag {
+  background: rgba(255,255,255,0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255,255,255,0.6) !important;
+  border-radius: 0.5rem !important;
+  color: #6b7280 !important;
+}
+
+/* ── Message / Notification ── */
+.el-message {
+  background: rgba(255,255,255,0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  border-radius: 0.75rem !important;
+  border: 1px solid rgba(255,255,255,0.9) !important;
+}
+.el-message--success {
+  border-color: rgba(16,185,129,0.3) !important;
+}

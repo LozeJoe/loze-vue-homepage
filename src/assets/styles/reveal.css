@@ -1,0 +1,6 @@
+/* Reveal animation: always visible, smooth entrance when observer fires */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none;
+}
