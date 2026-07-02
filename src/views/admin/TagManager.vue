@@ -39,7 +39,7 @@ onMounted(fetch)
 
     <div class="flex gap-3 mb-6">
       <el-input v-model="newName" placeholder="新标签名称" @keyup.enter="create" class="!flex-1" />
-      <el-button type="primary" @click="create"><Plus :size="15" class="mr-1" />添加</el-button>
+      <button @click="create" class="px-4 py-2 rounded-xl text-sm font-bold text-white transition-all shadow-sm hover:shadow-md flex items-center gap-1.5" style="background: linear-gradient(135deg, #10b981, #06b6d4);"><Plus :size="15" />添加</button>
     </div>
 
     <div class="glass rounded-2xl overflow-hidden">

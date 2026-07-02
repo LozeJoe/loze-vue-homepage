@@ -317,7 +317,7 @@ onMounted(() => { useReveal(); loadMessages();  })
                 </div>
               </div>
             </div>
-            <div class="relative w-full rounded-2xl overflow-hidden board-frame" ref="frameRef" @click="onFrameClick">
+            <div class="relative w-full rounded-2xl overflow-visible board-frame" ref="frameRef" @click="onFrameClick">
               <div class="cork-bg"></div>
               <div v-if="messages.length === 0 && !showingForm" class="absolute inset-0 flex flex-col items-center justify-center z-10">
                 <span class="text-2xl mb-2">📌</span>

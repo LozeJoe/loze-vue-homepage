@@ -1,4 +1,4 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import FloatingBack from '@/components/FloatingBack.vue'
@@ -8,6 +8,7 @@ import { Github, Mail, QrCode, Send, User, AtSign, MessageSquare, CheckCircle, L
 const form = ref({ name: '', email: '', message: '' })
 const sending = ref(false)
 const sent = ref(false)
+const showSuccess = ref(false)
 const showQR = ref(false)
 const showEmail = ref(false)
 const emailCopied = ref(false)
@@ -20,7 +21,6 @@ const copyEmail = async () => {
     emailCopied.value = true
     setTimeout(() => emailCopied.value = false, 2000)
   } catch {
-    // fallback
     const ta = document.createElement('textarea')
     ta.value = emailAddr
     document.body.appendChild(ta)
@@ -42,8 +42,9 @@ const submit = async () => {
       message: form.value.message
     })
     sent.value = true
+    showSuccess.value = true
     form.value = { name: '', email: '', message: '' }
-    setTimeout(() => sent.value = false, 4000)
+    setTimeout(() => { sent.value = false; showSuccess.value = false }, 4000)
   } catch (e) {
     console.error('提交失败:', e)
     alert('提交失败，请稍后再试')
@@ -57,7 +58,6 @@ onMounted(() => useReveal())
 
 <template>
   <div class="min-h-screen w-full font-sans relative" style="background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 30%, #ecfeff 60%, #f5f3ff 100%);">
-    <!-- Animated gradient orbs -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden" style="z-index:0">
       <div class="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-30"
            style="background: radial-gradient(circle, rgba(16,185,129,0.3) 0%, transparent 70%); animation: float 20s ease-in-out infinite;" />
@@ -66,14 +66,12 @@ onMounted(() => useReveal())
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full opacity-10"
            style="background: radial-gradient(ellipse, rgba(139,92,246,0.2) 0%, transparent 70%); animation: float 30s ease-in-out infinite;" />
     </div>
-    <!-- Grid pattern -->
     <div class="absolute inset-0 pointer-events-none opacity-[0.03]"
          style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 30px 30px;" />
     <div class="relative z-10">
     <FloatingBack to="/" />
 
     <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
-      <!-- Header -->
       <div class="text-center mb-12 reveal">
         <h1 class="text-4xl md:text-5xl font-black text-gray-800 mb-3">联系我</h1>
         <div class="w-20 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full mx-auto mb-6" />
@@ -81,9 +79,7 @@ onMounted(() => useReveal())
       </div>
 
       <div class="grid lg:grid-cols-5 gap-8">
-        <!-- 社交媒体 -->
         <div class="lg:col-span-2 space-y-4 reveal">
-          <!-- GitHub -->
           <a
             href="https://github.com/LozeJoe"
             target="_blank"
@@ -97,7 +93,6 @@ onMounted(() => useReveal())
               <p class="text-xs text-gray-400">LozeJoe</p>
             </div>
           </a>
-          <!-- Email 按钮 -->
           <button
             @click="showEmail = true"
             class="w-full flex items-center gap-4 p-4 rounded-2xl border-2 border-transparent bg-white/60 backdrop-blur transition-all duration-300 text-left hover:border-emerald-400 hover:text-emerald-600"
@@ -110,7 +105,6 @@ onMounted(() => useReveal())
               <p class="text-xs text-gray-400">{{ emailAddr }}</p>
             </div>
           </button>
-          <!-- QQ 二维码卡片 -->
           <button
             @click="showQR = true"
             class="w-full flex items-center gap-4 p-4 rounded-2xl border-2 border-transparent bg-white/60 backdrop-blur transition-all duration-300 text-left hover:border-green-400 hover:text-green-600"
@@ -125,7 +119,6 @@ onMounted(() => useReveal())
           </button>
         </div>
 
-        <!-- 留言表单 -->
         <div class="lg:col-span-3 reveal">
           <div class="bg-white/70 backdrop-blur border border-gray-100 rounded-2xl p-6 sm:p-8 shadow-sm">
             <div class="space-y-5">
@@ -227,11 +220,45 @@ onMounted(() => useReveal())
         </div>
       </Transition>
     </Teleport>
+
+    <!-- 发送成功弹窗 -->
+    <Teleport to="body">
+      <Transition name="qr-fade">
+        <div
+          v-if="showSuccess"
+          class="fixed inset-0 z-50 flex items-center justify-center p-4"
+          @click.self="showSuccess = false"
+        >
+          <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+          <div class="relative glass rounded-2xl p-8 shadow-xl shadow-emerald-500/10 max-w-sm w-full text-center">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center mx-auto mb-5">
+              <CheckCircle :size="32" class="text-white" />
+            </div>
+            <h3 class="text-xl font-black text-gray-800 mb-2">消息已送达 ✨</h3>
+            <p class="text-sm text-gray-500 leading-relaxed mb-1">感谢你的留言，每一条我都会认真阅读</p>
+            <p class="text-xs text-gray-400 mb-6">通常会在 24 小时内通过邮箱回复</p>
+            <button
+              @click="showSuccess = false"
+              class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 text-white font-medium text-sm hover:shadow-lg hover:shadow-emerald-200 transition-all active:scale-[0.98]"
+            >
+              好的
+            </button>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
     </div>
-</div>
+  </div>
 </template>
 
 <style scoped>
+.glass {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
 .qr-fade-enter-active { transition: all 0.25s ease-out; }
 .qr-fade-leave-active { transition: all 0.2s ease-in; }
 .qr-fade-enter-from { opacity: 0; }

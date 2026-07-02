@@ -53,7 +53,7 @@ onMounted(fetch)
     <!-- Add -->
     <div class="flex gap-3 mb-6">
       <el-input v-model="newName" placeholder="新分类名称" @keyup.enter="create" class="!flex-1" />
-      <el-button type="primary" @click="create"><Plus :size="15" class="mr-1" />添加</el-button>
+      <button @click="create" class="px-4 py-2 rounded-xl text-sm font-bold text-white transition-all shadow-sm hover:shadow-md flex items-center gap-1.5" style="background: linear-gradient(135deg, #10b981, #06b6d4);"><Plus :size="15" />添加</button>
     </div>
 
     <!-- List -->
@@ -63,8 +63,8 @@ onMounted(fetch)
         class="flex items-center justify-between px-5 py-3 border-b border-black/5 last:border-b-0 hover:bg-white/30 transition-colors">
         <template v-if="editing?.id === cat.id">
           <el-input v-model="editing.name" size="small" class="!flex-1 !mr-2" @keyup.enter="saveEdit" />
-          <el-button size="small" type="primary" @click="saveEdit"><Check :size="14" /></el-button>
-          <el-button size="small" @click="cancelEdit"><X :size="14" /></el-button>
+          <button @click="saveEdit" class="px-3 py-1.5 rounded-lg text-sm font-bold text-white" style="background: linear-gradient(135deg, #10b981, #06b6d4);"><Check :size="14" /></button>
+          <button @click="cancelEdit" class="px-3 py-1.5 rounded-lg text-sm font-bold text-gray-500 bg-white/60 border border-gray-200"><X :size="14" /></button>
         </template>
         <template v-else>
           <span class="font-bold text-gray-700 text-sm">{{ cat.name }}</span>
